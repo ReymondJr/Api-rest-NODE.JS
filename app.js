@@ -30,9 +30,10 @@ app.use(cors({
   }))
 app.disable('x-powered-by');
 
-// app.get('/', (req, res) => {
-//     res.json({message: 'Hola Servidor'})
-// })
+app.get('/', (req, res) => {
+  res.status(200).send('<h1> API DESPLEGADA</h1>')
+})
+
 app.get('/movies/:id', (req, res)=> {
     const {id} = req.params
     const movie = movies.find(movie => movie.id === id)

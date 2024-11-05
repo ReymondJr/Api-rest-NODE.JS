@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express')
 const movies = require('./movies.json')
 const cors = require('cors')
@@ -10,12 +12,7 @@ const app = express()
 app.use(express.json())
 app.use(cors({
     origin: (origin, callback) => {
-      const ACCEPTED_ORIGINS = [
-        'http://localhost:8080',
-        'http://localhost:1234',
-        'https://movies.com',
-        'https://midu.dev'
-      ]
+      const ACCEPTED_ORIGINS = process.env.CORS_ORIGINS.split(',');
   
       if (ACCEPTED_ORIGINS.includes(origin)) {
         return callback(null, true)
